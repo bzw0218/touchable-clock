@@ -121,12 +121,15 @@
               docEl.style.fontSize = "".concat(rootRem, "px");
             };
 
-            window.addEventListener('resize', refreshRem);
+            window.addEventListener('resize', window.location.reload());
             refreshRem();
           }
         },
       ])
       vw({ baseFontSize: 100, isScale: true, viewportFit: 'cover', pcAdapter: false })
+    </script>
+    <script>
+      document.querySelector('body').addEventListener('touchstart', function(ev){ev.preventDefault()})
     </script>
 
     <style>
