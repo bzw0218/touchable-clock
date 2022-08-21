@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <title>时钟</title>
+    <script>
+      !(function (e) {
+        var t = {}
+        function n(r) {
+          if (t[r]) return t[r].exports
+          var o = (t[r] = { i: r, l: !1, exports: {} })
+          return e[r].call(o.exports, o, o.exports, n), (o.l = !0), o.exports
+        }
+        ;(n.m = e),
+          (n.c = t),
+          (n.d = function (e, t, r) {
+            n.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: r })
+          }),
+          (n.r = function (e) {
+            'undefined' != typeof Symbol &&
+              Symbol.toStringTag &&
+              Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
+              Object.defineProperty(e, '__esModule', { value: !0 })
+          }),
+          (n.t = function (e, t) {
+            if ((1 & t && (e = n(e)), 8 & t)) return e
+            if (4 & t && 'object' == typeof e && e && e.__esModule) return e
+            var r = Object.create(null)
+            if (
+              (n.r(r),
+              Object.defineProperty(r, 'default', { enumerable: !0, value: e }),
+              2 & t && 'string' != typeof e)
+            )
+              for (var o in e)
+                n.d(
+                  r,
+                  o,
+                  function (t) {
+                    return e[t]
+                  }.bind(null, o),
+                )
+            return r
+          }),
+          (n.n = function (e) {
+            var t =
+              e && e.__esModule
+                ? function () {
+                    return e.default
+                  }
+                : function () {
+                    return e
+                  }
+            return n.d(t, 'a', t), t
+          }),
+          (n.o = function (e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t)
+          }),
+          (n.p = ''),
+          n((n.s = 0))
+      })([
+        function (e, t, n) {
+          'use strict'
+          Object.defineProperty(t, '__esModule', { value: !0 })
+          var r = window
+          t.default = r.vw = function (_ref2) {
+            var _ref2$baseFontSize = _ref2.baseFontSize,
+                baseFontSize = _ref2$baseFontSize === void 0 ? 100 : _ref2$baseFontSize,
+                _ref2$isScale = _ref2.isScale,
+                isScale = _ref2$isScale === void 0 ? true : _ref2$isScale,
+                _ref2$viewportFit = _ref2.viewportFit,
+                viewportFit = _ref2$viewportFit === void 0 ? 'cover' : _ref2$viewportFit,
+                _ref2$pcAdapter = _ref2.pcAdapter,
+                pcAdapter = _ref2$pcAdapter === void 0 ? false : _ref2$pcAdapter;
+            var docEl = document.documentElement;
+            var ua = navigator.userAgent;
+            var matches = ua.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i);
+            var UCversion = ua.match(/U3\/((\d+|\.){5,})/i);
+            var isUCHd = UCversion && parseInt(UCversion[1].split('.').join(''), 10) >= 80;
+            var isIOS = navigator.appVersion.match(/(iphone|ipad|ipod)/gi);
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            var scale = 1;
+
+            if (isScale) {
+              var dpr = window.devicePixelRatio || 1;
+
+              if (!isIOS && !(matches && matches[1] > 534) && !isUCHd) dpr = 1;
+              scale = 1 / dpr;
+
+              if (scale < 1) {
+                docEl.setAttribute('data-scale', scale);
+              } else {
+                docEl.removeAttribute('data-scale');
+              }
+
+              window.dpr = dpr;
+            } else {
+              docEl.removeAttribute('data-scale');
+            }
+
+            var metaEl = document.querySelector('meta[name="viewport"]');
+
+            if (!metaEl) {
+              metaEl = document.createElement('meta');
+              metaEl.setAttribute('name', 'viewport');
+              document.head.appendChild(metaEl);
+            }
+
+            metaEl.setAttribute('content', "width=device-width,user-scalable=no,initial-scale=".concat(scale, ",maximum-scale=").concat(scale, ",minimum-scale=").concat(scale, ",viewport-fit=").concat(viewportFit));
+
+            var refreshRem = function refreshRem() {
+              var width = window.innerHeight;
+
+              if (pcAdapter && !isMobile && width > 750) width = 750;
+              var rootRem = width / 750 * baseFontSize;
+              docEl.style.fontSize = "".concat(rootRem, "px");
+            };
+
+            window.addEventListener('resize', refreshRem);
+            refreshRem();
+          }
+        },
+      ])
+      vw({ baseFontSize: 100, isScale: true, viewportFit: 'cover', pcAdapter: false })
+    </script>
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        padding: 1.5rem 0.6rem 0.4rem;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        background: url('https://gw.alicdn.com/imgextra/i4/O1CN01nDxFTj1nZDthtRS3R_!!6000000005103-0-tps-1157-648.jpg') center center no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .container .rabbit {
+        position: absolute;
+        left: 0.2rem;
+        bottom: 0.3rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url('https://gw.alicdn.com/imgextra/i2/O1CN01vWcg1925Hy3r5iyTc_!!6000000007502-1-tps-2000-2000.gif') center center no-repeat;
+        background-size: contain;
+      }
+
+      .container > div {
+        width: 50%;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #canvas {
+        width: 40vw;
+        height: 40vw;
+        box-sizing: border-box;
+      }
+
+      .show-area {
+        font-size: 0.3rem;
+      }
+
+      .show-board {
+        width: 100%;
+        height: 5rem;
+        background: url('https://gw.alicdn.com/imgextra/i2/O1CN0172KYlQ1TccWMvSxQg_!!6000000002403-1-tps-2000-2000.gif') center top no-repeat;
+        background-size: contain;
+      }
+
+      .show-time {
+        text-align: center;
+        margin-top: 2.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 1rem;
+        color: goldenrod;
+      }
+
+      .show-right {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7) url('https://gw.alicdn.com/imgextra/i4/O1CN01JEPyte21WO471z7vn_!!6000000006992-2-tps-2000-2000.png') center center no-repeat;
+        background-size: 2rem 2rem;
+      }
+
+      
+
+    </style>
+  </head>
+  <body onselectstart = 'return false'>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="container">
+
+        <div class="show-area">
+          <div class="show-board">
+            <div class="show-time"></div>
+          </div>
+        </div>
+  
+        <div class="wrap-canvas">
+          <canvas id="canvas" width="7rem" height="7rem" />
+        </div>
+
+        <div class="rabbit"></div>
+      </div>
+
+      <div class="show-right"></div>
+    </div>
+  </body>
+  <script src="./canvas.js"></script>
+</html>
