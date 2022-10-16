@@ -59,10 +59,12 @@
     this.onCorrect = () => {
       this.showRight()
       this.refreshRandomTime()
+      this.rightAudio.stop()
       this.rightAudio.play()
     }
 
     this.onError = () => {
+      this.wrongAudio.stop()
       this.wrongAudio.play()
     }
 
