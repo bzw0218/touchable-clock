@@ -121,15 +121,12 @@
               docEl.style.fontSize = "".concat(rootRem, "px");
             };
 
-            window.addEventListener('resize', window.location.reload);
+            window.addEventListener('resize', refreshRem);
             refreshRem();
           }
         },
       ])
       vw({ baseFontSize: 100, isScale: true, viewportFit: 'cover', pcAdapter: false })
-    </script>
-    <script>
-      document.querySelector('body').addEventListener('touchstart', function(ev){ev.preventDefault()})
     </script>
 
     <style>
@@ -204,6 +201,12 @@
         background-size: 2rem 2rem;
       }
 
+      .wrap-media {
+        /* width: 0;
+        height: 0; */
+        display: none;
+      }
+
       
 
     </style>
@@ -227,6 +230,15 @@
       </div>
 
       <div class="show-right"></div>
+
+      <div class="wrap-media">
+        <audio id="rightAudio" controls>
+          <source src="./audios/正确.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="wrongAudio" controls>
+          <source src="./audios/错误.mp3" type="audio/mpeg">
+        </audio>
+      </div>
     </div>
   </body>
   <script src="./canvas.js"></script>

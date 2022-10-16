@@ -1,6 +1,7 @@
 (function() {
   function rpx2px (number) {
-    return number/750*window.innerHeight
+    // return number/750*window.innerHeight
+    return number
   }
 
   function imgReady (src) {
@@ -51,6 +52,20 @@
       ])
     }
 
+    this.onRandomTimeShow = () =>{
+
+    }
+
+    this.onCorrect = () => {
+      this.showRight()
+      this.refreshRandomTime()
+      this.rightAudio.play()
+    }
+
+    this.onError = () => {
+      this.wrongAudio.play()
+    }
+
     this.initEvent = () => {
       this.canvas.addEventListener('touchstart', this.handleTouchStart, false)
       this.canvas.addEventListener('touchmove', this.handleTouchMove, false)
@@ -85,8 +100,9 @@
 
       if(((h%12) === (hour%12) && (m - minute < 2)) 
        || ((h%12) === (hour%12) - 1 && (m -minute) > 58)) {
-        this.showRight()
-        this.refreshRandomTime()
+        this.onCorrect()
+      } else {
+        this.onError()
       }
       
     }
@@ -207,6 +223,10 @@
         this.ctx.translate(width/2, height/2)
 
         this.initEvent()
+
+        this.rightAudio = document.getElementById('rightAudio')
+
+        this.wrongAudio = document.getElementById('wrongAudio')
 
       })
     }
