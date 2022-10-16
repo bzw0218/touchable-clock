@@ -213,7 +213,10 @@
         this.minutePointerDom = img3
 
         const canvas = document.getElementById('canvas')
-        const { x, y, width, height } = canvas.getBoundingClientRect()
+        const { x, y, width: oWidth, height: oHeight } = canvas.getBoundingClientRect()
+
+        const width = oWidth
+        const height = oHeight
 
         canvas.setAttribute('width', width)
         canvas.setAttribute('height', height)
