@@ -144,6 +144,10 @@
     }
 
     this.handleTouchStart = (e) => {
+      try{
+        e.stopPropagation()
+        e.preventDefault()
+      } catch(error){}
       // 检测是否命中 时钟 分针  秒针
       const pointer = this.getRelativePosition(e)
       const isInClock = this.isPointerInClock(pointer)
